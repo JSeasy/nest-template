@@ -1,22 +1,29 @@
 import { Injectable } from '@nestjs/common';
-import { CreateErc20Dto } from './dto/create-erc20.dto';
-import { UpdateErc20Dto } from './dto/update-erc20.dto';
+import { Erc20Dto, PartialErc20Dto } from './dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+
+import { Erc20 } from './entities/erc20.entity';
 
 @Injectable()
 export class Erc20Service {
-  create(createErc20Dto: CreateErc20Dto) {
-    return 'This action adds a new erc20';
+  constructor(
+    @InjectRepository(Erc20)
+    private erc20Repository: Repository<Erc20>,
+  ) {}
+  async create(createErc20Dto: Erc20Dto) {
+    return await this.erc20Repository.create(createErc20Dto);
   }
 
-  findAll() {
-    return `This action returns all erc20`;
+  async findAll(queryErc20Dto: PartialErc20Dto) {
+    return await this.erc20Repository.findBy(queryErc20Dto);
   }
 
   findOne(id: number) {
     return `This action returns a #${id} erc20`;
   }
 
-  update(id: number, updateErc20Dto: UpdateErc20Dto) {
+  update(id: number, updateErc20Dto: PartialErc20Dto) {
     return `This action updates a #${id} erc20`;
   }
 

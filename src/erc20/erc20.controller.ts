@@ -1,20 +1,27 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { Erc20Service } from './erc20.service';
-import { CreateErc20Dto } from './dto/create-erc20.dto';
-import { UpdateErc20Dto } from './dto/update-erc20.dto';
+import { PartialErc20Dto, Erc20Dto } from './dto';
 
 @Controller('erc20')
 export class Erc20Controller {
-  constructor(private readonly erc20Service: Erc20Service) {}
+  constructor(private erc20Service: Erc20Service) {}
 
   @Post()
-  create(@Body() createErc20Dto: CreateErc20Dto) {
+  create(@Body() createErc20Dto: Erc20Dto) {
     return this.erc20Service.create(createErc20Dto);
   }
 
   @Get()
-  findAll() {
-    return this.erc20Service.findAll();
+  findAll(@Param() queryErc20Dto: PartialErc20Dto) {
+    return this.erc20Service.findAll(queryErc20Dto);
   }
 
   @Get(':id')
@@ -23,7 +30,7 @@ export class Erc20Controller {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateErc20Dto: UpdateErc20Dto) {
+  update(@Param('id') id: string, @Body() updateErc20Dto: PartialErc20Dto) {
     return this.erc20Service.update(+id, updateErc20Dto);
   }
 
