@@ -4,7 +4,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { Erc20 } from './erc20/entities/erc20.entity';
 import { Erc20Module } from './erc20/erc20.module';
-
+import { password } from '../security';
 @Module({
   imports: [
     Erc20Module,
@@ -13,7 +13,7 @@ import { Erc20Module } from './erc20/erc20.module';
       host: '118.31.188.117',
       port: 3306,
       username: 'root',
-      password: '123123',
+      password,
       database: 'test',
       entities: [Erc20],
       synchronize: true,
