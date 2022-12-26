@@ -13,5 +13,8 @@ export class Erc20 extends BaseEntity {
   symbol: string;
 
   @Column()
-  totalSupply: number;
+  totalSupply: string;
+
+  @Column()
+  precision: string;
 }

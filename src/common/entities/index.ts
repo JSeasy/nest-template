@@ -4,6 +4,11 @@ import {
   DeleteDateColumn,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import {
+  registerDecorator,
+  ValidationArguments,
+  ValidationOptions,
+} from 'class-validator';
 export class BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
@@ -38,4 +43,42 @@ export class BaseEntity {
     type: 'timestamp',
   })
   deleteDate: Date;
+}
+
+export function arrayDistinct(
+  property: string,
+  validationOptions?: ValidationOptions,
+): any {
+  return (object: any, propertyName: string): void => {
+    let arr = [];
+    registerDecorator({
+      name: 'ArrayDistinct',
+      target: object.constructor,
+      propertyName,
+      constraints: [property],
+      options: validationOptions,
+      validator: {
+        validate(value: any): boolean {
+          arr = [];
+          if (Array.isArray(value)) {
+            const distinct = value.map((v) => v[property]);
+            const map = new Map();
+            distinct.forEach((item) => {
+              if (map.has(item)) {
+                arr.push(item);
+              } else {
+                map.set(item, 1);
+              }
+            });
+
+            return !arr.length;
+          }
+          return false;
+        },
+        defaultMessage(args: ValidationArguments): string {
+          return `${args.property} field value ${arr.join(',')}duplicate`;
+        },
+      },
+    });
+  };
 }

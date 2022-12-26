@@ -1,21 +1,28 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { Erc20Dto, PartialErc20Dto } from './dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-
 import { Erc20 } from './entities/erc20.entity';
+import { UsersService } from 'src/users/users.service';
 
 @Injectable()
 export class Erc20Service {
   constructor(
     @InjectRepository(Erc20)
     private erc20Repository: Repository<Erc20>,
+    // testing injection
+    @Inject('TokenProvider') private tokenProvider: string,
+    @Inject('ConstProvider') private constProvider: string,
+    @Inject(UsersService) private usersService: UsersService,
+    @Inject('FactoryProvider') private factoryProvider: string,
   ) {}
   async create(createErc20Dto: Erc20Dto) {
     return await this.erc20Repository.create(createErc20Dto);
   }
 
   async findAll(queryErc20Dto: PartialErc20Dto) {
+    console.log(this.usersService);
+    console.log(this.factoryProvider);
     return await this.erc20Repository.findBy(queryErc20Dto);
   }
 

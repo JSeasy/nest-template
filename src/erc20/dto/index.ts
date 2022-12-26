@@ -11,7 +11,10 @@ export class Erc20Dto {
   symbol: string;
 
   @IsNotEmpty()
-  totalSupply: number;
+  totalSupply: string;
+
+  @IsNotEmpty()
+  precision: string;
 }
 
 export class PartialErc20Dto extends PartialType(Erc20Dto) {}

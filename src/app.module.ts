@@ -1,10 +1,9 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { Erc20 } from './erc20/entities/erc20.entity';
 import { Erc20Module } from './erc20/erc20.module';
 import { password } from '../security';
+import { UsersModule } from './users/users.module';
 @Module({
   imports: [
     Erc20Module,
@@ -21,8 +20,9 @@ import { password } from '../security';
       dateStrings: true,
       // driver: require('mysql2'),
     }),
+    UsersModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}

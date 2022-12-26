@@ -744,7 +744,7 @@
 
 "@nestjs/typeorm@^9.0.1":
   version "9.0.1"
-  resolved "https://registry.yarnpkg.com/@nestjs/typeorm/-/typeorm-9.0.1.tgz#f78bfc00e71731ea860288e4a03830107daf3d9c"
+  resolved "https://registry.npmmirror.com/@nestjs/typeorm/-/typeorm-9.0.1.tgz#f78bfc00e71731ea860288e4a03830107daf3d9c"
   integrity sha512-A2BgLIPsMtmMI0bPKEf4bmzgFPsnvHqNBx3KkvaJ7hJrBQy0OqYOb+Rr06ifblKWDWS2tUPNrAFQbZjtk3PI+g==
   dependencies:
     uuid "8.3.2"
@@ -4015,6 +4015,11 @@ require-from-string@^2.0.2:
   version "2.0.2"
   resolved "https://registry.npmjs.org/require-from-string/-/require-from-string-2.0.2.tgz"
   integrity sha512-Xf0nWe6RseziFMu+Ap9biiUbmplq6S9/p+7w7YXP/JBHhrUDDUhwa+vANyubuqfZWTveU//DYVGsDG7RKL/vEw==
+
+res@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.npmmirror.com/res/-/res-0.4.0.tgz#6b49922040dd056ad18c3c0e85dbfcd712b44147"
+  integrity sha512-GIpSc5wCvGw8uCLubn2RuQ2vBAqSv5uNtzDGpWuw6HVSRiUnHYcWf/5oac8FPglifVOgvV6bWNJpeSLmqZdYLA==
 
 resolve-cwd@^3.0.0:
   version "3.0.0"
