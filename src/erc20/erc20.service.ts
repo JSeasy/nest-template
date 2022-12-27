@@ -10,19 +10,16 @@ export class Erc20Service {
   constructor(
     @InjectRepository(Erc20)
     private erc20Repository: Repository<Erc20>,
-    // testing injection
-    @Inject('TokenProvider') private tokenProvider: string,
-    @Inject('ConstProvider') private constProvider: string,
-    @Inject(UsersService) private usersService: UsersService,
-    @Inject('FactoryProvider') private factoryProvider: string,
-  ) {}
+    @Inject(UsersService) private usersService: UsersService, // testing injection // @Inject('TokenProvider') private tokenProvider: string, // @Inject('ConstProvider') private constProvider: string, // @Inject(UsersService) private usersService: UsersService,
+  ) // @Inject('FactoryProvider') private factoryProvider: string,
+  {}
   async create(createErc20Dto: Erc20Dto) {
     return await this.erc20Repository.create(createErc20Dto);
   }
 
   async findAll(queryErc20Dto: PartialErc20Dto) {
-    console.log(this.usersService);
-    console.log(this.factoryProvider);
+    // console.log(this.usersService);
+    // console.log(this.factoryProvider);
     return await this.erc20Repository.findBy(queryErc20Dto);
   }
 
