@@ -8,14 +8,14 @@ import { Users } from './entities/user.entity';
 export class UsersService {
   constructor(
     @InjectRepository(Users)
-    private erc20Repository: Repository<Users>,
+    private usersRepository: Repository<Users>,
   ) {}
-  create(createUserDto: UserDto) {
-    return '';
+  async create(createUserDto: UserDto) {
+    return await this.usersRepository.create(createUserDto);
   }
 
-  findAll() {
-    return `This action returns all users`;
+  async findAll() {
+    return await this.usersRepository.find();
   }
 
   findOne(id: number) {

@@ -6,16 +6,19 @@ import {
   Patch,
   Param,
   Delete,
+  Injectable,
 } from '@nestjs/common';
 import { Erc20Service } from './erc20.service';
 import { PartialErc20Dto, Erc20Dto } from './dto';
 
+@Injectable()
 @Controller('erc20')
 export class Erc20Controller {
   constructor(private erc20Service: Erc20Service) {}
 
   @Post()
   create(@Body() createErc20Dto: Erc20Dto) {
+    console.log(createErc20Dto);
     return this.erc20Service.create(createErc20Dto);
   }
 
