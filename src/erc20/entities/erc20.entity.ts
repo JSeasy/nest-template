@@ -1,5 +1,6 @@
 import { BaseEntity } from 'src/common/entities';
-import { Entity, Column } from 'typeorm';
+import { Users } from 'src/users/entities/user.entity';
+import { Entity, Column, ManyToOne, JoinColumn } from 'typeorm';
 
 @Entity()
 export class Erc20 extends BaseEntity {
@@ -17,4 +18,8 @@ export class Erc20 extends BaseEntity {
 
   @Column()
   precision: string;
+
+  @ManyToOne(() => Users, (user) => user.constracts)
+  @JoinColumn()
+  user: Users;
 }

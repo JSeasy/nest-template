@@ -14,28 +14,18 @@ import { UserDto, UpdateUserDto } from './dto';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @Post()
+  @Post('/regist')
   create(@Body() createUserDto: UserDto) {
     return this.usersService.create(createUserDto);
+  }
+
+  @Post('/login')
+  login(@Body() createUserDto: UserDto) {
+    return this.usersService.login(createUserDto);
   }
 
   @Get()
   findAll() {
     return this.usersService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.usersService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.usersService.update(+id, updateUserDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.usersService.remove(+id);
   }
 }
