@@ -5,6 +5,7 @@ import { password } from '../security';
 import { Erc20Module } from './erc20/erc20.module';
 import { UsersModule } from './users/users.module';
 import { Users } from './users/entities/user.entity';
+import { AuthModule } from './auth/auth.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -22,6 +23,7 @@ import { Users } from './users/entities/user.entity';
     }),
     Erc20Module,
     UsersModule,
+    AuthModule,
   ],
   controllers: [],
   providers: [],

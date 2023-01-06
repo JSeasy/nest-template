@@ -19,19 +19,12 @@ export class UsersService {
     return await this.usersRepository.save(createUserDto);
   }
 
-  async login(data: UserDto) {
-    const { username, password } = data;
+  async login(data: UserDto) {}
 
-    const result = await this.usersRepository.findOneBy({ username });
-    if (!result) {
-      return '用户不存在';
-    }
-    if (result.password === password) {
-      return result.id;
-    }
-    return '密码错误';
-  }
   async findAll() {
     return await this.usersRepository.find();
+  }
+  async findOne(username: string) {
+    return await this.usersRepository.findOneBy({ username });
   }
 }
