@@ -7,11 +7,14 @@ import {
   Param,
   Delete,
   Injectable,
+  UseGuards,
 } from '@nestjs/common';
 import { Erc20Service } from './erc20.service';
 import { PartialErc20Dto, Erc20Dto } from './dto';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
 @Injectable()
+@UseGuards(JwtAuthGuard)
 @Controller('erc20')
 export class Erc20Controller {
   constructor(private erc20Service: Erc20Service) {}
