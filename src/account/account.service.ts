@@ -32,8 +32,8 @@ export class AccountService {
 
   async findAll({ username, id }: { username: string; id: string }) {
     // 查询关联关系
-    return await this.accountRepository.find({
-      where: { user: { username } },
+    return await this.accountRepository.findBy({
+      user: { username },
     });
   }
 
