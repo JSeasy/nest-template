@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserDto } from 'src/users/dto';
-import { UsersService } from 'src/users/users.service';
+import { UserService } from 'src/users/users.service';
 import { Repository } from 'typeorm';
 import { AccountBody } from './dto';
 import { Account } from './entities/account.entity';
@@ -9,7 +9,7 @@ import { Account } from './entities/account.entity';
 @Injectable()
 export class AccountService {
   constructor(
-    private userService: UsersService,
+    private userService: UserService,
     @InjectRepository(Account)
     private accountRepository: Repository<Account>,
   ) {}

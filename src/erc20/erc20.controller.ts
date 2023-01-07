@@ -22,9 +22,8 @@ export class Erc20Controller {
   constructor(private erc20Service: Erc20Service) {}
 
   @Post()
-  create(@Body() createErc20Dto: Erc20Dto) {
-    console.log(createErc20Dto);
-    return this.erc20Service.create(createErc20Dto);
+  create(@Body() createErc20Dto: Erc20Dto, @Req() request: IReqWithUser) {
+    return this.erc20Service.create(createErc20Dto, request.user);
   }
 
   @Get()
@@ -32,8 +31,7 @@ export class Erc20Controller {
     @Param() queryErc20Dto: PartialErc20Dto,
     @Req() request: IReqWithUser,
   ) {
-    console.log(request.user);
-    return this.erc20Service.findAll(queryErc20Dto);
+    return this.erc20Service.findAll(queryErc20Dto, request.user);
   }
 
   @Get(':id')

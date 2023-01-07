@@ -1,4 +1,4 @@
-import { UsersService } from 'src/users/users.service';
+import { UserService } from 'src/users/users.service';
 
 export const TokenProvider = {
   provide: 'TokenProvider',
@@ -11,8 +11,8 @@ export const ConstProvider = {
 };
 
 export const ClassProvider = {
-  provide: UsersService,
-  useClass: UsersService,
+  provide: UserService,
+  useClass: UserService,
 };
 
 export const FactoryProvider = {

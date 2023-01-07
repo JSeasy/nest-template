@@ -1,19 +1,18 @@
-import { Controller, Get, Post, Body, UseGuards } from '@nestjs/common';
-import { UsersService } from './users.service';
+import { Controller, Get, Post, Body } from '@nestjs/common';
+import { UserService } from './users.service';
 import { UserDto } from './dto';
-import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { AuthService } from 'src/auth/auth.service';
 
 @Controller('users')
 export class UsersController {
   constructor(
-    private readonly usersService: UsersService,
+    private readonly userService: UserService,
     private authSevice: AuthService,
   ) {}
 
   @Post('/regist')
   create(@Body() createUserDto: UserDto) {
-    return this.usersService.create(createUserDto);
+    return this.userService.create(createUserDto);
   }
 
   @Post('/login')
@@ -23,6 +22,6 @@ export class UsersController {
 
   @Get()
   findAll() {
-    return this.usersService.findAll();
+    return this.userService.findAll();
   }
 }

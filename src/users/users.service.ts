@@ -5,7 +5,7 @@ import { UserDto } from './dto';
 import { User } from './entities/user.entity';
 
 @Injectable()
-export class UsersService {
+export class UserService {
   constructor(
     @InjectRepository(User)
     private userRepository: Repository<User>,

@@ -1,22 +1,26 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { Erc20Dto, PartialErc20Dto } from './dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Erc20 } from './entities/erc20.entity';
+import { IUserPayload } from 'src/types';
+import { UserService } from 'src/users/users.service';
 
 @Injectable()
 export class Erc20Service {
   constructor(
     @InjectRepository(Erc20)
     private erc20Repository: Repository<Erc20>,
+    private userService: UserService,
   ) {}
-  async create(createErc20Dto: Erc20Dto) {
-    return await this.erc20Repository.save(createErc20Dto);
+  async create(createErc20Dto: Erc20Dto, { username }: IUserPayload) {
+    const user = await this.userService.findOne({ username });
+    return await this.erc20Repository.save({ ...createErc20Dto, user });
   }
 
-  async findAll(queryErc20Dto: PartialErc20Dto) {
-    const res = await this.erc20Repository.findAndCount();
-    return res[0];
+  async findAll(queryErc20Dto: PartialErc20Dto, { username }: IUserPayload) {
+    const res = await this.erc20Repository.findBy({ user: { username } });
+    return res;
   }
 
   findOne(id: number) {

@@ -4,3 +4,8 @@ export interface IReqWithUser extends Request {
     id: string;
   };
 }
+
+export interface IUserPayload {
+  username: string;
+  id: string;
+}
