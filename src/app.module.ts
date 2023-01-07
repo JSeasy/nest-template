@@ -4,8 +4,10 @@ import { Erc20 } from './erc20/entities/erc20.entity';
 import { password } from '../security';
 import { Erc20Module } from './erc20/erc20.module';
 import { UsersModule } from './users/users.module';
-import { Users } from './users/entities/user.entity';
+import { User } from './users/entities/user.entity';
 import { AuthModule } from './auth/auth.module';
+import { AccountModule } from './account/account.module';
+import { Account } from './account/entities/account.entity';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -15,7 +17,7 @@ import { AuthModule } from './auth/auth.module';
       username: 'root',
       password,
       database: 'test',
-      entities: [Erc20, Users],
+      entities: [Erc20, User, Account],
       synchronize: true,
       // timezone: '+08:00',
       dateStrings: true,
@@ -24,6 +26,7 @@ import { AuthModule } from './auth/auth.module';
     Erc20Module,
     UsersModule,
     AuthModule,
+    AccountModule,
   ],
   controllers: [],
   providers: [],

@@ -20,6 +20,7 @@ export class UsersController {
   login(@Body() createUserDto: UserDto) {
     return this.authSevice.login(createUserDto);
   }
+
   @Get()
   findAll() {
     return this.usersService.findAll();

@@ -10,7 +10,7 @@ import {
   ClassProvider,
   FactoryProvider,
 } from 'src/common/provider';
-import { Users } from 'src/users/entities/user.entity';
+import { User } from 'src/users/entities/user.entity';
 
 @Module({
   controllers: [Erc20Controller],
@@ -22,6 +22,6 @@ import { Users } from 'src/users/entities/user.entity';
     ClassProvider,
     FactoryProvider,
   ],
-  imports: [TypeOrmModule.forFeature([Erc20, Users])],
+  imports: [TypeOrmModule.forFeature([Erc20, User])],
 })
 export class Erc20Module {}

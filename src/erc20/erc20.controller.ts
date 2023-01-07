@@ -8,10 +8,12 @@ import {
   Delete,
   Injectable,
   UseGuards,
+  Req,
 } from '@nestjs/common';
 import { Erc20Service } from './erc20.service';
 import { PartialErc20Dto, Erc20Dto } from './dto';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { IReqWithUser } from 'src/types';
 
 @Injectable()
 @UseGuards(JwtAuthGuard)
@@ -26,7 +28,11 @@ export class Erc20Controller {
   }
 
   @Get()
-  findAll(@Param() queryErc20Dto: PartialErc20Dto) {
+  findAll(
+    @Param() queryErc20Dto: PartialErc20Dto,
+    @Req() request: IReqWithUser,
+  ) {
+    console.log(request.user);
     return this.erc20Service.findAll(queryErc20Dto);
   }
 
