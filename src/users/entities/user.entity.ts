@@ -1,7 +1,7 @@
 import { Account } from 'src/account/entities/account.entity';
 import { BaseEntity } from 'src/common/entities';
 import { Erc20 } from 'src/erc20/entities/erc20.entity';
-import { Entity, Column, OneToMany } from 'typeorm';
+import { Entity, Column, OneToMany, JoinColumn } from 'typeorm';
 @Entity()
 export class User extends BaseEntity {
   @Column()

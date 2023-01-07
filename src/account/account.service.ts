@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { UserDto } from 'src/users/dto';
 import { UsersService } from 'src/users/users.service';
 import { Repository } from 'typeorm';
 import { AccountBody } from './dto';
@@ -12,17 +13,28 @@ export class AccountService {
     @InjectRepository(Account)
     private accountRepository: Repository<Account>,
   ) {}
-  async create(accountBody: AccountBody, { username }: { username: string }) {
+  async create(
+    accountBody: AccountBody,
+    { username, id }: { username: string; id: string },
+  ) {
+    const { accountAddress } = accountBody;
+    const account = await this.accountRepository.findOneBy({ accountAddress });
+    if (account) {
+      return '钱包地址已存在';
+    }
     const user = await this.userService.findOne({ username });
-    const account = await this.accountRepository.save({
+    await this.accountRepository.save({
       ...accountBody,
       user,
     });
     return '绑定成功';
   }
 
-  findAll() {
-    return `This action returns all account`;
+  async findAll({ username, id }: { username: string; id: string }) {
+    // 查询关联关系
+    return await this.accountRepository.find({
+      where: { user: { username } },
+    });
   }
 
   findOne(id: number) {

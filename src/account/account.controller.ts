@@ -24,9 +24,9 @@ export class AccountController {
     return this.accountService.create(accountBody, request.user);
   }
 
-  @Get()
-  findAll() {
-    return this.accountService.findAll();
+  @Get('/list')
+  findAll(@Req() request: IReqWithUser) {
+    return this.accountService.findAll(request.user);
   }
 
   @Get(':id')
